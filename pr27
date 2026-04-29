@@ -1,0 +1,40 @@
+import java.io.*;
+
+public class StudentFile {
+    public static void main(String[] args) {
+
+        BufferedWriter bw = null;
+        BufferedReader br = null;
+
+        try {
+          
+            bw = new BufferedWriter(new FileWriter("students.txt"));
+
+            bw.write("101 Rahul 75\n");
+            bw.write("102 Priya 82\n");
+            bw.write("103 Amit 68\n");
+
+            bw.close();
+
+          
+            br = new BufferedReader(new FileReader("students.txt"));
+            String line;
+
+            System.out.println("Student Records:");
+
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+
+        } catch (IOException e) {
+            System.out.println("File error occurred.");
+        } finally {
+            try {
+                if (bw != null) bw.close();
+                if (br != null) br.close();
+            } catch (IOException e) {
+                System.out.println("Error closing file.");
+            }
+        }
+    }
+}
